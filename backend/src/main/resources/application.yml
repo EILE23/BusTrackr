@@ -42,7 +42,8 @@ logging:
 bus:
   api:
     base-url: http://ws.bus.go.kr/api/rest
-    service-key: YOUR_SERVICE_KEY_HERE
+    service-key: TEST_SERVICE_KEY_PLACEHOLDER
+    timeout: 5000
     
 management:
   endpoints:

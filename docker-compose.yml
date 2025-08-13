@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_REDIS_HOST=redis
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/bustrackr
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - bustrackr-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - bustrackr-network
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=bustrackr
+      - MYSQL_USER=bustrackr
+      - MYSQL_PASSWORD=bustrackr
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - bustrackr-network
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - bustrackr-network
+
+volumes:
+  mysql_data:
+
+networks:
+  bustrackr-network:
+    driver: bridge

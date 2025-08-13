@@ -1,0 +1,47 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backend
+backend/build/
+backend/.gradle/
+backend/bin/
+backend/out/
+backend/*.jar
+backend/*.war
+backend/*.ear
+backend/hs_err_pid*
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Database
+*.db
+*.sqlite
+
+# Docker
+docker-compose.override.yml
